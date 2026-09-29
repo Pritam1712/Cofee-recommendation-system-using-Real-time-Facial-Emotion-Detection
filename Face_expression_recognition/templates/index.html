@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Facial Emotion Detection</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('static/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            margin-top: 5%;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+        }
+        h2 {
+            font-size: 2rem;
+        }
+        input {
+            margin-top: 15px;
+            font-size: 16px;
+        }
+        .btn {
+            padding: 12px 25px;
+            font-size: 16px;
+            background: blue;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .btn:hover {
+            background: darkblue;
+        }
+        img {
+            max-width: 300px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+        table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+            background: #D2B48C;
+            color: black;
+            border-radius: 10px;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        th {
+            background: dodgerblue;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Upload an Image to Detect Emotion & Get Coffee Recommendation</h2>
+        <form action="/detect" method="post" enctype="multipart/form-data">
+            <input type="file" name="image" required>
+            <button type="submit" class="btn">Upload & Predict</button>
+        </form>
+
+        {% if prediction %}
+            <h3>Predicted Emotion: <span style="color: yellow;">{{ prediction }}</span></h3>
+            <img src="{{ image_file }}" alt="Uploaded Image">
+            <h3>Recommended Coffee:</h3>
+
+            <table>
+                <tr>
+                    <th>Coffee Type</th>
+                    <th>Calories (kcal)</th>
+                    <th>Total Fat (g)</th>
+                    <th>Carbohydrates (g)</th>
+                    <th>Protein (g)</th>
+                    <th>Caffeine (mg)</th>
+                    <th>Cholesterol (mg)</th>
+                </tr>
+                {% for coffee, details in coffee_details.items() %}
+                <tr>
+                    <td>{{ coffee }}</td>
+                    <td>{{ details[0] }}</td>
+                    <td>{{ details[1] }}</td>
+                    <td>{{ details[2] }}</td>
+                    <td>{{ details[3] }}</td>
+                    <td>{{ details[4] }}</td>
+                    <td>{{ details[5] }}</td>
+                </tr>
+                {% endfor %}
+            </table>
+
+        {% endif %}
+    </div>
+
+</body>
+</html>

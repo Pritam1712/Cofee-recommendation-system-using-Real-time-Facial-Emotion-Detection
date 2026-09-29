@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to AI Coffee Recommender</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background: url('static/background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white;
+        }
+        .container {
+            width: 60%;
+            margin: auto;
+            margin-top: 15%;
+            padding: 40px;
+            background: rgba(0, 0, 0, 0.6);
+            border-radius: 15px;
+        }
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+        }
+        .highlight {
+            font-weight: bold;
+            color: yellow;
+        }
+        .btn {
+            padding: 15px 30px;
+            font-size: 18px;
+            background: orange;
+            color: black;
+            border: none;
+            cursor: pointer;
+            border-radius: 10px;
+        }
+        .btn:hover {
+            background: darkorange;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Welcome to AI Coffee Recommender</h1>
+        <p>Discover the perfect coffee match for your mood using <span class="highlight">facial emotion detection</span>!</p>
+        <p>Simply upload an image, and our AI will recommend a coffee based on your emotions.</p>
+        <a href="{{ url_for('upload_predict') }}"><button class="btn">Start Now</button></a>
+    </div>
+
+</body>
+</html>
